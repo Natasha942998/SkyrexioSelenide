@@ -15,6 +15,7 @@ public class BaseTest {
     String empty;
     String errorMsg;
     String incorrect;
+    String titleEnglish;
 
     @BeforeMethod
     public void setUp() {
@@ -29,6 +30,7 @@ public class BaseTest {
         empty = PropertyReader.getProperty("skyrexio.empty");
         errorMsg = PropertyReader.getProperty("skyrexio.errorMsg");
         incorrect = PropertyReader.getProperty("skyrexio.incorrect");
+        titleEnglish = PropertyReader.getProperty("skyrexio.title");
     }
 
     @AfterMethod

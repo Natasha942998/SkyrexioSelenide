@@ -1,16 +1,22 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import enams.PropertyEnums;
 import tests.BaseTest;
 import utils.PropertyReader;
 
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Selenide.open;
 
 public class LoginPage extends BaseTest {
     public final SelenideElement emailInput = $x("//*[@placeholder='Email']");
     public final SelenideElement passwordInput = $x("//*[@placeholder='Пароль']");
     public final SelenideElement submit = $x("//*[@type='submit']");
+    public final SelenideElement languageChangeButton = $x("//*[@aria-haspopup='menu']");
+    public final SelenideElement languageEnglish = $x("//div/span[text()='English']");
+    public final SelenideElement languageRussian = $x("//div/span[text()='Russian']");
+
 
     public LoginPage openLoginPage() {
         open("login");
@@ -53,6 +59,29 @@ public class LoginPage extends BaseTest {
     }
 
     public String errorMessageLogin() {
-        return PropertyReader.getProperty("errorMsg");
+        return PropertyReader.getProperty(PropertyEnums.ERROR_MSG);
+    }
+
+    public String isTitlePresentEnglish() {
+        return PropertyReader.getProperty(PropertyEnums.TITLE_ENGLISH);
+    }
+
+    public LoginPage languageChangeButton() {
+        languageChangeButton.click();
+        return this;
+    }
+
+    public LoginPage choiceLanguageEnglish() {
+        languageEnglish.click();
+        return this;
+    }
+
+    public LoginPage choiceLanguageRussian() {
+        languageRussian.click();
+        return this;
+    }
+
+    public String isTitlePresentRussian() {
+        return PropertyReader.getProperty(PropertyEnums.TITLE_RUSSIAN);
     }
 }
