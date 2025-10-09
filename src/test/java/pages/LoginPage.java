@@ -8,6 +8,7 @@ import utils.PropertyReader;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$x;
+import static enams.PropertyEnums.*;
 
 public class LoginPage extends BaseTest {
     public final SelenideElement emailInput = $x("//*[@placeholder='Email']");
@@ -59,16 +60,16 @@ public class LoginPage extends BaseTest {
     }
 
     public String errorMessageLogin() {
-        return PropertyReader.getProperty(PropertyEnums.ERROR_MSG);
-    }
-
-    public String isTitlePresentEnglish() {
-        return PropertyReader.getProperty(PropertyEnums.TITLE_ENGLISH);
+        return ERROR_MSG.getValue();
     }
 
     public LoginPage languageChangeButton() {
         languageChangeButton.click();
         return this;
+    }
+
+    public String isTitlePresentEnglish() {
+        return TITLE_ENGLISH.getValue();
     }
 
     public LoginPage choiceLanguageEnglish() {
@@ -82,6 +83,6 @@ public class LoginPage extends BaseTest {
     }
 
     public String isTitlePresentRussian() {
-        return PropertyReader.getProperty(PropertyEnums.TITLE_RUSSIAN);
+        return TITLE_RUSSIAN.getValue();
     }
 }
