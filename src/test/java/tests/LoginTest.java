@@ -46,7 +46,7 @@ public class LoginTest extends BaseTest {
     public void loginIncorrectPassword() {
         loginPage.openLoginPage()
                 .emailInput(email)
-                .incorrectPassword(String.valueOf(incorrect))
+                .passwordInput(String.valueOf(incorrect))
                 .submit()
                 .errorMessageLogin();
     }
