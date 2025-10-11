@@ -1,9 +1,6 @@
 package tests;
 
-import com.codeborne.selenide.Condition;
 import org.testng.annotations.Test;
-
-import static com.google.common.util.concurrent.ClosingFuture.submit;
 
 public class LoginTest extends BaseTest {
 
@@ -21,7 +18,7 @@ public class LoginTest extends BaseTest {
                 .emailEmpty(String.valueOf(empty))
                 .passwordInput(password)
                 .submit()
-                .errorMessageLogin();
+                .getEmailInputBackgroundColor();
     }
 
     @Test
@@ -30,7 +27,7 @@ public class LoginTest extends BaseTest {
                 .emailInput(email)
                 .passwordEmpty(String.valueOf(empty))
                 .submit()
-                .errorMessageLogin();
+                .getPasswordInputBackgroundColor();
     }
 
     @Test
@@ -49,5 +46,22 @@ public class LoginTest extends BaseTest {
                 .incorrectPassword(String.valueOf(incorrect))
                 .submit()
                 .errorMessageLogin();
+    }
+
+    @Test
+    public void checkEnglishLanguage() {
+        loginPage.openLoginPage()
+                .languageChangeButton()
+                .choiceLanguageEnglish()
+                .isTitlePresentEnglish();
+    }
+
+    @Test
+    public void checkRussianLanguage() {
+        loginPage.openLoginPage()
+                .languageChangeButton()
+                .choiceLanguageEnglish()
+                .choiceLanguageRussian()
+                .isTitlePresentRussian();
     }
 }

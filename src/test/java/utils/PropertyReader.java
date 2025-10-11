@@ -1,5 +1,7 @@
 package utils;
 
+import enams.PropertyEnums;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -54,5 +56,9 @@ public class PropertyReader {
 
     public static String getProperty(String propertyName) {
         return loadProperties().getProperty(propertyName);
+    }
+
+    public static String getProperty(PropertyEnums propertyEnum) {
+        return getProperty(propertyEnum.getValue());
     }
 }
