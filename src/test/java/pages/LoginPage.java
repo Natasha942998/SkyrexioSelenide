@@ -52,7 +52,6 @@ public class LoginPage extends BaseTest {
                 ("background-color", "rgba(255, 255, 255, 1)"));
     }
 
-
     public LoginPage passwordEmpty(String empty) {
         passwordInput.setValue(empty);
         return this;
