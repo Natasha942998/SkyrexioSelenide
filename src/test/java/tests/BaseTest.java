@@ -3,12 +3,19 @@ package tests;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
+import io.qameta.allure.Step;
+import io.qameta.allure.testng.AllureTestNg;
+import org.openqa.selenium.WebDriver;
+import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+
 import pages.BinancePage;
 import pages.HomePage;
 import pages.LoginPage;
 import utils.PropertyReader;
+
+
 
 public class BaseTest {
     LoginPage loginPage;
@@ -23,8 +30,9 @@ public class BaseTest {
     protected String binanceUrlAuthorize;
     protected String homeUrl;
 
+    @Step("Открытие браузера")
     @BeforeMethod
-    public void setUp() {
+    public void setUp(ITestContext context) {
         Configuration.browser = "chrome";
         Configuration.headless = false;
         Configuration.timeout = 10000;
@@ -41,9 +49,9 @@ public class BaseTest {
         titleEnglish = PropertyReader.getProperty("skyrexio.title");
         binanceUrlAuthorize = PropertyReader.getProperty("binance.url.authorize");
         homeUrl = PropertyReader.getProperty("skyrexio.home.url");
-
     }
 
+    @Step("Закрытие браузера")
     @AfterMethod
     public void closeWind() {
         WebDriverRunner.clearBrowserCache();
