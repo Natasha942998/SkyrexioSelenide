@@ -2,14 +2,18 @@ package tests;
 
 import org.testng.annotations.Test;
 
+import static com.codeborne.selenide.Selenide.switchTo;
+
 public class LoginTest extends BaseTest {
 
     @Test
     public void loginCorrectData() {
         loginPage.openLoginPage()
-                .emailInput(email)
+                .waitLoginPageLoaded();
+        loginPage.emailInput(email)
                 .passwordInput(password)
                 .submit();
+        homePage.waitHomePageLoaded();
     }
 
     @Test
@@ -63,5 +67,21 @@ public class LoginTest extends BaseTest {
                 .choiceLanguageEnglish()
                 .choiceLanguageRussian()
                 .isTitlePresentRussian();
+    }
+
+    @Test
+    public void checkButtonBinanceOne() {
+        loginPage.openLoginPage()
+                .getButtonBinance();
+        binancePage.openBinancePage()
+                .waitBinancePageLoaded();
+    }
+
+    @Test
+    public void checkButtonBinanceTwo() {
+        loginPage.openLoginPage()
+                .getButtonBinance();
+        switchTo().window(1);
+        binancePage.waitBinancePageAuthorizationLoaded();
     }
 }

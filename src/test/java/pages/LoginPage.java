@@ -4,9 +4,10 @@ import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.WebElement;
 import tests.BaseTest;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.cssValue;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
-import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.WebDriverConditions.urlContaining;
 import static enams.PropertyEnums.*;
 
 public class LoginPage extends BaseTest {
@@ -19,12 +20,17 @@ public class LoginPage extends BaseTest {
     public final SelenideElement errorMessage = $x("//*[text()='Неверный email или пароль']");
     public final SelenideElement titleRussian = $x("//h1[text()='Вход']");
     public final SelenideElement titleEnglish = $x("//h1[text()='Sign in']");
-    public final SelenideElement inputFieldEmail = $x("//div[@class = 'tw-flex tw-items-center tw-h-10 tw-w-full tw-rounded-md tw-bg-background tw-text-base tw-border tw-transition-all tw-duration-300 focus-within:tw-ring-0 tw-overflow-hidden tw-border-red-500 tw-h-12']");
-    public final SelenideElement inputFieldPassword = $x("//div[@class = 'tw-flex tw-items-center tw-h-10 tw-w-full tw-rounded-md tw-bg-background tw-text-base tw-border tw-transition-all tw-duration-300 focus-within:tw-ring-0 tw-overflow-hidden tw-border-input tw-h-12']");
+    public final SelenideElement inputFieldEmail = $x("//div[contains(@class, 'tw-flex') and contains(@class, 'tw-border-red-500 tw-h-12')]");
+    public final SelenideElement inputFieldPassword = $x("//div[contains(@class, 'tw-flex') and contains(@class, 'tw-border-input tw-h-12')]");
+    public final SelenideElement buttonBinance = $x("//div[contains(@class, 'tw-flex') and contains(@class, 'tw-items-center')]/button[2]");
 
     public LoginPage openLoginPage() {
         open("login");
         return this;
+    }
+
+    public void waitLoginPageLoaded() {
+        webdriver().shouldHave(urlContaining("login"));
     }
 
     public LoginPage emailInput(String email) {
@@ -100,5 +106,11 @@ public class LoginPage extends BaseTest {
     public String isTitlePresentRussian() {
         titleRussian.shouldBe(visible);
         return TITLE_RUSSIAN.getValue();
+    }
+
+    public LoginPage getButtonBinance() {
+        buttonBinance.shouldBe(visible);
+        buttonBinance.click();
+        return this;
     }
 }
