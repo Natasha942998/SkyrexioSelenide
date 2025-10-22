@@ -10,7 +10,7 @@ import static com.codeborne.selenide.WebDriverConditions.urlContaining;
 
 public class HomePage extends BaseTest {
 
-    public final SelenideElement PersonalAccountButton = $x("//button[@aria-haspopup='menu']");
+    public final SelenideElement personalAccountButton = $x("//button[@aria-haspopup='menu']");
     public final SelenideElement exitButton = $x("//div[@class='tw-flex tw-items-center tw-justify-between tw-gap-[8px]'][4]");
 
     @Step("Открытие HomePage")
@@ -26,7 +26,7 @@ public class HomePage extends BaseTest {
 
     @Step("Нажатие значка аккаунта")
     public HomePage getPersonalAccountButton() {
-        PersonalAccountButton.shouldBe(Condition.visible).click();
+        personalAccountButton.shouldBe(Condition.visible).click();
         return this;
     }
 
