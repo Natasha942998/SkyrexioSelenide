@@ -1,4 +1,4 @@
-package tests;
+package tests_Ui;
 
 import org.testng.annotations.Test;
 
@@ -69,19 +69,11 @@ public class LoginTest extends BaseTest {
                 .isTitlePresentRussian();
     }
 
-    @Test
-    public void checkButtonBinanceOne() {
-        loginPage.openLoginPage()
-                .getButtonBinance();
-        binancePage.openBinancePage()
-                .waitBinancePageLoaded();
-    }
-
-    @Test
-    public void checkButtonBinanceTwo() {
+   @Test
+    public void checkButtonBinance() {
         loginPage.openLoginPage()
                 .getButtonBinance();
         switchTo().window(1);
-        binancePage.waitBinancePageAuthorizationLoaded();
+        binancePage.waitBinancePageLoaded();
     }
 }
